@@ -33,6 +33,9 @@ android {
     dataBinding {
         enabled = true
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'UnsplashAPIKEY', unsplashAPIKey
+    }
 }
 
 kapt {

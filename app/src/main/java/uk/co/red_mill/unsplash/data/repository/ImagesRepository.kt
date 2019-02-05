@@ -1,6 +1,5 @@
 package uk.co.red_mill.unsplash.data.repository
 
-import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -8,7 +7,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import uk.co.red_mill.unsplash.R
+import uk.co.red_mill.unsplash.BuildConfig
 import uk.co.red_mill.unsplash.data.model.UnsplashImage
 
 class ImagesRepository {
@@ -26,7 +25,7 @@ class ImagesRepository {
 
     fun getImageList(): LiveData<List<UnsplashImage>> {
         val data = MutableLiveData<List<UnsplashImage>>()
-        val apiKey: String = Resources.getSystem().getString(R.string.unsplash_api_key)
+        val apiKey: String = BuildConfig.UnsplashAPIKEY
 
         unsplashService?.getPhotos(apiKey, PAGES_TO_DISPLAY)?.enqueue(object : Callback<List<UnsplashImage>> {
             override fun onResponse(call: Call<List<UnsplashImage>>, response: Response<List<UnsplashImage>>) {
